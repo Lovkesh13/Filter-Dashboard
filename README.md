@@ -63,3 +63,5 @@ The project uses TypeScript for type safety and better development experience. K
 - `vite.config.ts` - Vite bundler configuration
 - `eslint.config.js` - ESLint rules and settings
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
