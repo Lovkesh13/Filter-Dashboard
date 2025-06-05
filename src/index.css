@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background: #f7f9fb;
+  color: #222;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #253858;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dashboard-container {
+  padding: 40px 0 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.filter-dropdown {
+  min-width: 200px;
+  margin: 0 10px;
+}
+
+.filter-dropdown label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #253858;
+}
+
+.react-select__control {
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 8px !important;
+  min-height: 40px !important;
+  box-shadow: none !important;
+}
+
+.react-select__multi-value {
+  background: #e3e9f7 !important;
+  color: #253858 !important;
+}
+
+.react-select__option--is-focused {
+  background: #f0f4fa !important;
+}
+
+.table-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  overflow: hidden;
+  margin: 0 auto 2rem auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.08rem;
+}
+
+thead {
+  background: #f6f6f6;
+}
+
+thead th {
+  padding: 18px 0 18px 24px;
+  font-weight: 700;
+  color: #253858;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+tbody tr {
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: #f0f4fa;
+}
+
+td {
+  padding: 16px 0 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.pagination button {
+  background: #e3e9f7;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  color: #253858;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pagination button:disabled {
+  background: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1.08rem;
+  color: #253858;
+}
+
+button {
+  padding: 8px 16px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} 
