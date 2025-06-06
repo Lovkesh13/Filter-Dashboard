@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Select from 'react-select';
 
 interface FilterDropdownProps {
@@ -9,8 +9,20 @@ interface FilterDropdownProps {
 }
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selected, onChange }) => {
-  const selectOptions = options.map((opt) => ({ value: opt, label: String(opt) }));
-  const selectedOptions = selectOptions.filter((opt) => selected.includes(opt.value));
+  const selectOptions = useMemo(() => 
+    options.map((opt) => ({ value: opt, label: String(opt) })),
+    [options]
+  );
+
+  const selectedOptions = useMemo(() => 
+    selectOptions.filter((opt) => selected.includes(opt.value)),
+    [selectOptions, selected]
+  );
+
+  const handleChange = useMemo(() => 
+    (vals: any) => onChange(vals.map((v: any) => v.value)),
+    [onChange]
+  );
 
   return (
     <div style={{ minWidth: 150, margin: '10px' }}>
@@ -19,7 +31,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selecte
         isMulti
         options={selectOptions}
         value={selectedOptions}
-        onChange={(vals) => onChange(vals.map((v) => v.value))}
+        onChange={handleChange}
         closeMenuOnSelect={false}
         placeholder={`Select ${label}`}
         styles={{
@@ -35,4 +47,4 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selecte
   );
 };
 
-export default FilterDropdown; 
+export default React.memo(FilterDropdown); 

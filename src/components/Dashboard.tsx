@@ -108,25 +108,14 @@ const Dashboard: React.FC = () => {
     [data, filters]
   );
 
-  // For each filter, compute the available options based on other filters
   const filterOptions: Record<ModKey, number[]> = useMemo(() => {
     const options: Record<ModKey, number[]> = {
-      mod350: [],
-      mod8000: [],
-      mod20002: [],
+      mod350: moduloColumns[0].values,
+      mod8000: moduloColumns[1].values,
+      mod20002: moduloColumns[2].values,
     };
-    
-    moduloColumns.forEach((col) => {
-      // Get all unique values for this column from the entire dataset
-      const uniqueValues = Array.from(new Set(data.map((row) => row[col.key])))
-        .filter((val): val is number => typeof val === 'number' && !isNaN(val))
-        .sort((a, b) => a - b);
-      
-      options[col.key] = uniqueValues;
-    });
-    
     return options;
-  }, [data]);
+  }, []); 
 
   if (loading) return <div className="loading-message">Loading data...</div>;
   if (error) return <div className="error-message">{error}</div>;
