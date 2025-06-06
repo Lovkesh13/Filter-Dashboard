@@ -1,5 +1,8 @@
 import React, { useMemo } from 'react';
-import Select from 'react-select';
+import type { MenuListProps } from 'react-select';
+import type { GroupBase } from 'react-select';
+import Select from 'react-select'; 
+import { FixedSizeList as List } from 'react-window';
 
 interface FilterDropdownProps {
   label: string;
@@ -8,6 +11,33 @@ interface FilterDropdownProps {
   onChange: (selected: number[]) => void;
 }
 
+const MenuList = (props: MenuListProps<any, true, GroupBase<any>>) => {
+  const { children, maxHeight } = props;
+
+  const optionHeight = 35;
+  const childrenArray = React.Children.toArray(children);
+
+  return (
+    <List
+      height={maxHeight}
+      itemCount={childrenArray.length}
+      itemSize={optionHeight}
+      width="100%"
+    >
+      {({ index, style }) => {
+        const child = childrenArray[index] as React.ReactElement<any>;
+        return React.cloneElement(child, {
+          innerProps: {
+            ...(child.props.innerProps as object),
+            style: { ...child.props.innerProps?.style, ...style },
+          },
+        });
+      }}
+    </List>
+  );
+};
+
+// The main FilterDropdown component
 const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selected, onChange }) => {
   const selectOptions = useMemo(() => 
     options.map((opt) => ({ value: opt, label: String(opt) })),
@@ -34,6 +64,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selecte
         onChange={handleChange}
         closeMenuOnSelect={false}
         placeholder={`Select ${label}`}
+        maxMenuHeight={300}
+        menuPlacement="auto"
+        getOptionValue={(option) => String(option.value)}
+        getOptionLabel={(option) => option.label}
         styles={{
           control: (base) => ({
             ...base,
@@ -41,6 +75,18 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selecte
             borderRadius: 4,
             boxShadow: 'none',
           }),
+          menu: (base) => ({
+            ...base,
+            zIndex: 9999,
+          }),
+          menuList: (base) => ({
+            ...base,
+            maxHeight: '300px', 
+          }),
+        }}
+        components={{
+          MenuList: MenuList,
+          IndicatorSeparator: () => null,
         }}
       />
     </div>
