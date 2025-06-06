@@ -48,7 +48,6 @@ cd filter-dashboard
 npm install
 # or
 yarn install
-```
 
 3. Start the development server
 ```bash
