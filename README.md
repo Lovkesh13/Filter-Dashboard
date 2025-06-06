@@ -1,93 +1,54 @@
-# Filter Dashboard
+# React + TypeScript + Vite
 
-## Description
-A modern React-based dashboard application that provides filtering capabilities for data visualization. Built with TypeScript and Vite, this application offers a user-friendly interface for data filtering and analysis.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
-- Interactive data filtering interface
-- CSV file parsing and processing using PapaParse
-- Modern React components with TypeScript support
-- Responsive design
-- Custom select components using react-select
-- Fast development and build times with Vite
+Currently, two official plugins are available:
 
-## Tech Stack
-- React 19
-- TypeScript
-- Vite
-- PapaParse for CSV processing
-- React Select for enhanced dropdowns
-- ESLint for code quality
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/filter-dashboard.git
+## Expanding the ESLint configuration
 
-# Navigate to the project directory
-cd filter-dashboard
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-# Install dependencies
-npm install
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-## Development
-```bash
-# Start the development server
-npm run dev
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-# Build for production
-npm run build
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-# Preview production build
-npm run preview
-
-# Run linting
-npm run lint
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
 ```
-
-## Project Structure
-```
-filter-dashboard/
-├── src/              # Source files
-├── public/           # Static assets
-├── index.html        # Entry HTML file
-├── vite.config.ts    # Vite configuration
-├── tsconfig.json     # TypeScript configuration
-└── package.json      # Project dependencies and scripts
-```
-
-## Configuration
-The project uses TypeScript for type safety and better development experience. Key configuration files:
-- `tsconfig.json` - TypeScript compiler options
-- `vite.config.ts` - Vite bundler configuration
-- `eslint.config.js` - ESLint rules and settings
-
-## Usage
-Explain how to use your project. Include code examples if applicable.
-
-```javascript
-// Example code
-const example = require('your-package');
-example.doSomething();
-```
-
-## API Documentation
-If your project has an API, document the endpoints and their usage.
-
-## Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
-Project Link: [https://github.com/yourusername/filter-dashboard](https://github.com/yourusername/filter-dashboard)
-
-## Acknowledgments
-- List any credits, inspirations, etc. 
