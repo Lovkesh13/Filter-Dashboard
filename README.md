@@ -1,4 +1,4 @@
-# Filter DashboardMore actions
+# Filter Dashboard
 
 ## Description
 A modern React-based dashboard application that provides filtering capabilities for data visualization. Built with TypeScript and Vite, this application offers a user-friendly interface for data filtering and analysis.
