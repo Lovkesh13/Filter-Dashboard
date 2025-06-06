@@ -117,17 +117,8 @@ const Dashboard: React.FC = () => {
     };
     
     moduloColumns.forEach((col) => {
-      // Filter data using all filters except the current one
-      const filtered = data.filter((row) =>
-        moduloColumns.every((otherCol) =>
-          otherCol.key === col.key ||
-          filters[otherCol.key].length === 0 ||
-          filters[otherCol.key].includes(row[otherCol.key])
-        )
-      );
-      
-      // Get unique values for this column and ensure they are numbers
-      const uniqueValues = Array.from(new Set(filtered.map((row) => row[col.key])))
+      // Get all unique values for this column from the entire dataset
+      const uniqueValues = Array.from(new Set(data.map((row) => row[col.key])))
         .filter((val): val is number => typeof val === 'number' && !isNaN(val))
         .sort((a, b) => a - b);
       
@@ -135,7 +126,7 @@ const Dashboard: React.FC = () => {
     });
     
     return options;
-  }, [data, filters]);
+  }, [data]);
 
   if (loading) return <div className="loading-message">Loading data...</div>;
   if (error) return <div className="error-message">{error}</div>;
