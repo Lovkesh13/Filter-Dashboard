@@ -22,7 +22,7 @@ A modern React-based dashboard application that provides filtering capabilities 
 ## Installation
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/filter-dashboard.git
+git clone https://github.com/Lovkesh13/filter-dashboard.git
 
 # Navigate to the project directory
 cd filter-dashboard
