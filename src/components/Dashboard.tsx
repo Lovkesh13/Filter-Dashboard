@@ -116,9 +116,19 @@ const Dashboard: React.FC = () => {
       mod20002: [],
     };
     
+    // First, filter the data based on all currently selected filters
+    let filteredData = data;
     moduloColumns.forEach((col) => {
-      // Get all unique values for this column from the entire dataset
-      const uniqueValues = Array.from(new Set(data.map((row) => row[col.key])))
+      if (filters[col.key].length > 0) {
+        filteredData = filteredData.filter((row) => 
+          filters[col.key].includes(row[col.key])
+        );
+      }
+    });
+    
+    // Then, for each column, get the available options from the filtered data
+    moduloColumns.forEach((col) => {
+      const uniqueValues = Array.from(new Set(filteredData.map((row) => row[col.key])))
         .filter((val): val is number => typeof val === 'number' && !isNaN(val))
         .sort((a, b) => a - b);
       
@@ -126,7 +136,7 @@ const Dashboard: React.FC = () => {
     });
     
     return options;
-  }, [data]);
+  }, [data, filters]);
 
   if (loading) return <div className="loading-message">Loading data...</div>;
   if (error) return <div className="error-message">{error}</div>;
