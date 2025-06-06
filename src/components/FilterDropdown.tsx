@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import type { MenuListProps } from 'react-select';
 import type { GroupBase } from 'react-select';
-import Select from 'react-select'; 
-import { FixedSizeList as List } from 'react-window';
+import Select from 'react-select';
+import { FixedSizeList as List, type ListChildComponentProps } from 'react-window';
 
 interface FilterDropdownProps {
   label: string;
@@ -11,6 +11,7 @@ interface FilterDropdownProps {
   onChange: (selected: number[]) => void;
 }
 
+// Custom MenuList component using react-window for virtualization
 const MenuList = (props: MenuListProps<any, true, GroupBase<any>>) => {
   const { children, maxHeight } = props;
 
@@ -24,7 +25,7 @@ const MenuList = (props: MenuListProps<any, true, GroupBase<any>>) => {
       itemSize={optionHeight}
       width="100%"
     >
-      {({ index, style }) => {
+      {({ index, style }: ListChildComponentProps<any>) => {
         const child = childrenArray[index] as React.ReactElement<any>;
         return React.cloneElement(child, {
           innerProps: {
