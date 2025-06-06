@@ -42,12 +42,14 @@ git clone https://github.com/Lovkesh13/filter-dashboard.git
 
 # Navigate to the project directory
 cd filter-dashboard
+```
 
 2. Install dependencies
 ```bash
 npm install
 # or
 yarn install
+```
 
 3. Start the development server
 ```bash
