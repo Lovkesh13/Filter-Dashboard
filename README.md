@@ -64,6 +64,8 @@ npm run build
 # Preview production build
 npm run preview
 
+# Usage
+
 1. The dashboard displays a table of numbers and their corresponding modulo values
 2. Use the dropdown filters at the top to select specific modulo values
 3. The table will automatically update to show only the numbers that match all selected filters
